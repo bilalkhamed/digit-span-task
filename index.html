@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Digit Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Digit Span Task</h1>
+    <div class="participant-data">
+      <input type="text" id="participantIdInput" placeholder="Participant ID">
+      <input type="text" id="groupIdInput" placeholder="Group ID">
+    </div>
+    <div class="input-container">
+
+      <div id="taskControls">
+        <button id="forwardTaskBtn"> Start forward task </button>
+        <button id="backwardTaskBtn"> Start backward task </button>
+      </div>
+    </div>
+    <div id="digitControls">
+      <button class="arrow" id="decreaseBtn">-</button>
+      <input type="number" id="digitCount" placeholder="Enter number of digits" value="3" min="1" />
+      <button class="arrow" id="increaseBtn">+</button>
+      <button onclick="generateDigits()" class="generate-btn">Generate Digits</button>
+      <button id="wrongBtn"> Wrong </button>
+    </div>
+
+    <div id="digitDisplay" class="digit-display"></div>
+  </div>
+
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Group ID</th>
+        <th>Forward Score</th>
+        <th>Backward Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="participantId"></td>
+        <td id="groupId"></td>
+        <td id="forwardScore"></td>
+        <td id="backwardScore"></td>
+      </tr>
+    </tbody>
+  </table>
+  <script src="app.js"></script>
+</body>
+
+</html>
