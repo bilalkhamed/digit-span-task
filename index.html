@@ -35,24 +35,31 @@
     <div id="digitDisplay" class="digit-display"></div>
   </div>
 
-  <table class="results-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Group ID</th>
-        <th>Forward Score</th>
-        <th>Backward Score</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="participantId"></td>
-        <td id="groupId"></td>
-        <td id="forwardScore"></td>
-        <td id="backwardScore"></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Group ID</th>
+          <th>Forward Score</th>
+          <th>Backward Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="participantId"></td>
+          <td id="groupId"></td>
+          <td id="forwardScore"></td>
+          <td id="backwardScore"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button id="copy-button">
+      Copy
+    </button>
+  </div>
+
   <script src="app.js"></script>
 </body>
 

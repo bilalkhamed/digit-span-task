@@ -11,6 +11,7 @@ const participantIdInput = document.getElementById('participantIdInput');
 const groupIdInput = document.getElementById('groupIdInput');
 const participantIdDisplay = document.getElementById('participantId');
 const groupIdDisplay = document.getElementById('groupId');
+const copyButton = document.getElementById('copy-button');
 
 let participant = {
     id: 0,
@@ -91,3 +92,19 @@ wrongBtn.addEventListener('click', function () {
     backwardScoreDisplay.textContent = scores.backward;
 })
 
+copyButton.addEventListener('click', function () {
+    const textToCopy = `${participant.id}\t${participant.groupId}\t${scores.forward}\t${scores.backward}`;
+    navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+            this.innerText = 'Copied!';
+
+            setTimeout(() => {
+                this.innerText = 'Copy';
+            }, 500);
+        })
+        .catch(err => {
+            console.error('Failed to copy text: ', err);
+            alert('Error copying')
+        });
+
+});

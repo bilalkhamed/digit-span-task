@@ -98,13 +98,13 @@ button:hover {
   display: none;
 }
 
-.generate-btn {
+.generate-btn, #copy-button {
   background-color: gray;
   margin-top: 5px;
 }
 
 
-.generate-btn:hover {
+.generate-btn:hover, #copy-button:hover {
   background-color: rgb(94, 94, 94);
 }
 
@@ -117,10 +117,18 @@ button:hover {
   background-color: rgb(219, 11, 11);
 }
 
+.table-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+  margin-top: 20px;
+}
+
 .results-table {
   width: 80%;
   border-collapse: collapse;
-  margin-top: 20px;
 }
 
 .results-table th, .results-table td {
@@ -178,4 +186,10 @@ button:hover {
 .participant-data input::placeholder {
   color: #aaa;
   font-style: italic;
+}
+
+#copy-button {
+  height: 50%;
+  margin-top: 0;
+  padding: 10px;
 }
