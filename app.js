@@ -11,7 +11,9 @@ const participantIdInput = document.getElementById('participantIdInput');
 const groupIdInput = document.getElementById('groupIdInput');
 const participantIdDisplay = document.getElementById('participantId');
 const groupIdDisplay = document.getElementById('groupId');
-const copyButton = document.getElementById('copy-button');
+const copyBtn = document.getElementById('copy-button');
+const viewHistoryBtn = document.getElementById('view-history-btn');
+const historyTable = document.getElementById('history-table');
 
 let participant = {
     id: 0,
@@ -86,13 +88,16 @@ wrongBtn.addEventListener('click', function () {
     const score = digitInput.value - 1;
 
     scores[currentTask] = score;
-    console.log(forwardScore);
 
     forwardScoreDisplay.textContent = scores.forward;
     backwardScoreDisplay.textContent = scores.backward;
+
+    if (currentTask === 'backward') {
+        storeToLocalStorage();
+    }
 })
 
-copyButton.addEventListener('click', function () {
+copyBtn.addEventListener('click', function () {
     const textToCopy = `${participant.id}\t${participant.groupId}\t${scores.forward}\t${scores.backward}`;
     navigator.clipboard.writeText(textToCopy)
         .then(() => {
@@ -107,4 +112,89 @@ copyButton.addEventListener('click', function () {
             alert('Error copying')
         });
 
+    resetTask();
 });
+
+viewHistoryBtn.addEventListener('click', function () {
+    if (this.innerText === 'View history') {
+        historyTable.style.opacity = '100%';
+        getHistory();
+        this.innerText = 'Hide'
+    } else {
+        historyTable.style.opacity = '0';
+        this.innerText = 'View history';
+    }
+});
+
+function storeToLocalStorage() {
+    const participantResult = {
+        ...participant,
+        ...scores
+    };
+
+    const participantResults = JSON.parse(localStorage.getItem('participantResults')) || [];
+    participantResults.push(participantResult);
+    localStorage.setItem('participantResults', JSON.stringify(participantResults));
+}
+
+function getHistory() {
+    historyTable.querySelector('tbody').innerHTML = '';
+    const participantResults = JSON.parse(localStorage.getItem('participantResults')) || [];
+    participantResults.forEach(appendToTable);
+}
+
+function appendToTable(data) {
+    const row = document.createElement('tr');
+    const copyButton = document.createElement('button');
+
+    copyButton.innerText = 'Copy';
+    copyButton.classList.add('secondary-btn');
+    copyButton.addEventListener('click', function () {
+        const textToCopy = `${data.id}\t${data.groupId}\t${data.forward}\t${data.backward}`;
+        navigator.clipboard.writeText(textToCopy)
+            .then(() => {
+                this.innerText = 'Copied!';
+                setTimeout(() => {
+                    this.innerText = 'Copy';
+                }, 500);
+            })
+            .catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert('Error copying');
+            });
+    });
+
+    // Populate the row
+    row.innerHTML = `<td>${data.id}</td>
+                     <td>${data.groupId}</td>
+                     <td>${data.forward}</td>
+                     <td>${data.backward}</td>`;
+
+    // Create a new <td> for the button and append the button to it
+    const buttonCell = document.createElement('td');
+    buttonCell.appendChild(copyButton);
+    row.appendChild(buttonCell);
+
+    // Append the row to the table
+    historyTable.querySelector('tbody').appendChild(row);
+}
+
+
+function resetTask() {
+    // Clear the objects
+    scores.forward = 0;
+    scores.backward = 0;
+    participant.id = 0;
+    participant.groupId = '';
+
+    // Clear the elements 
+    participantIdInput.value = '';
+    groupIdInput.value = '';
+    participantIdDisplay.innerText = '';
+    groupIdDisplay.innerText = '';
+    forwardScoreDisplay.innerText = '';
+    backwardScoreDisplay.innerText = '';
+    digitDisplay.innerText = '';
+    digitControls.style.display = 'none';
+}
+

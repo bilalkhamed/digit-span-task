@@ -98,13 +98,13 @@ button:hover {
   display: none;
 }
 
-.generate-btn, #copy-button {
+.generate-btn, #copy-button, #view-history-btn, .secondary-btn {
   background-color: gray;
   margin-top: 5px;
 }
 
 
-.generate-btn:hover, #copy-button:hover {
+.generate-btn:hover, #copy-button:hover, #view-history-btn:hover, .secondary-btn:hover {
   background-color: rgb(94, 94, 94);
 }
 
@@ -119,6 +119,7 @@ button:hover {
 
 .table-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 10px;
   width: 100%;
@@ -126,9 +127,19 @@ button:hover {
   margin-top: 20px;
 }
 
+
 .results-table {
   width: 80%;
+  margin-top: 10px;
   border-collapse: collapse;
+}
+
+/* History */
+.results-table:nth-of-type(2) {
+  opacity: 0;
+}
+.results-table:nth-of-type(2) th {
+  background-color: #333;
 }
 
 .results-table th, .results-table td {
@@ -192,4 +203,8 @@ button:hover {
   height: 50%;
   margin-top: 0;
   padding: 10px;
+}
+
+#history-table {
+  transition: opacity 0.3s ease-in-out;
 }

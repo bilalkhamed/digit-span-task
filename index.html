@@ -37,6 +37,7 @@
 
   <div class="table-container">
 
+
     <table class="results-table">
       <thead>
         <tr>
@@ -44,6 +45,7 @@
           <th>Group ID</th>
           <th>Forward Score</th>
           <th>Backward Score</th>
+          <th class="action-column">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -52,13 +54,42 @@
           <td id="groupId"></td>
           <td id="forwardScore"></td>
           <td id="backwardScore"></td>
+          <td><button id="copy-button">
+              Copy
+            </button></td>
         </tr>
       </tbody>
     </table>
-    <button id="copy-button">
-      Copy
+
+    <button id="view-history-btn">
+      View history
     </button>
+    <table class="results-table" id="history-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Group ID</th>
+          <th>Forward Score</th>
+          <th>Backward Score</th>
+          <th class="action-column">Action</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <!-- The table rows will be dynamically added here -->
+      </tbody>
+    </table>
+
+
   </div>
+
+  <div class="table-container">
+
+
+
+
+  </div>
+
 
   <script src="app.js"></script>
 </body>
