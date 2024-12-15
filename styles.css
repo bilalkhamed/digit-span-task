@@ -13,7 +13,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-y: auto;
 }
 
 .container {
@@ -135,10 +136,11 @@ button:hover {
 }
 
 /* History */
-.results-table:nth-of-type(2) {
+#history-table {
   opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
-.results-table:nth-of-type(2) th {
+#history-table th {
   background-color: #333;
 }
 
@@ -203,8 +205,4 @@ button:hover {
   height: 50%;
   margin-top: 0;
   padding: 10px;
-}
-
-#history-table {
-  transition: opacity 0.3s ease-in-out;
 }

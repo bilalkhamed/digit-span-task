@@ -117,14 +117,19 @@ copyBtn.addEventListener('click', function () {
 
 viewHistoryBtn.addEventListener('click', function () {
     if (this.innerText === 'View history') {
-        historyTable.style.opacity = '100%';
+        historyTable.style.display = 'table'; // Make table visible
+        historyTable.style.opacity = '1'; // Fade in effect
         getHistory();
-        this.innerText = 'Hide'
+        this.innerText = 'Hide';
     } else {
-        historyTable.style.opacity = '0';
+        historyTable.style.opacity = '0'; // Fade out effect
+        setTimeout(() => {
+            historyTable.style.display = 'none'; // Hide after fading out
+        }, 300); // Match the CSS transition duration
         this.innerText = 'View history';
     }
 });
+
 
 function storeToLocalStorage() {
     const participantResult = {
